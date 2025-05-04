@@ -24,7 +24,6 @@ void print_grid(int n, vector<int> &v){
     sleep(1);
 }
 
-int main()
-{
+int main(){
     return 0;
 }

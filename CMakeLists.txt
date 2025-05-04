@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.22)
 
 project(nqueens
-    
+    LANGUAGES CXX
+    VERSION 1.0
 )
 
 # -- fetch tabulate --------------------
@@ -25,8 +26,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-include_directories(include/)
-
 add_executable(nqueens src/nqueens.cpp)
+
+target_include_directories(nqueens
+    PRIVATE include/
+)
 
 target_link_libraries(nqueens PRIVATE tabulate)
