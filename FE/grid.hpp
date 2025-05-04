@@ -22,5 +22,6 @@ void print_grid(int n, vector<int> &v){
         }
         cout << "\n";
     }
+    sleep(1);
 }
 # endif
