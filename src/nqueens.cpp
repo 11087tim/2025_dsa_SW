@@ -26,5 +26,12 @@ void print_grid(int n, vector<int> &v){
 
 int main()
 {
+    cout << "Enter the size of the board (n for n-queens, up to 8): ";
+    cin >> n;
+    if (n < 1 || n > 8) {
+        cout << "Invalid input." << endl;
+        return 1;  
+    }
+
     return 0;
 }
