@@ -6,3 +6,14 @@ test.cpp
 
 # system
 .vscode
+
+# cmake items
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+_deps
+compile_commands.json
+*
+!.*
