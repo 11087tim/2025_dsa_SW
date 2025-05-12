@@ -139,10 +139,21 @@ int main()
     cout << "Enter the positions of queens (row, column) or -1 to finish:" << endl;
     while (true) {
         int row, col;
-        cin >> row;
-
+        cin >> s;
+        if(!isdigit(s[0]) && s[0]!='-'){
+            cout << "Invalid input. Try again." << endl;
+            continue; // Invalid input
+        }
+        row = stoi(s);
         if (row == -1) break; // End input
-        cin >> col;
+
+        cin >> s;
+        while(!isdigit(s[0])){
+            cout << "Invalid input. Try again." << endl;
+            cin >> s;
+        }
+        col = stoi(s);
+
         if (row < 0 || row >= n || col < 0 || col >= n) {
             cout << "Invalid position. Try again." << endl;
             continue; // Invalid position
