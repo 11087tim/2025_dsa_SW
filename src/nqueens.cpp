@@ -2,7 +2,9 @@
 # include <vector>
 # include <unistd.h>
 # include <tabulate/table.hpp>
-
+# include <string>
+# include <cctype>
+# include <stdlib.h>
 #include <chrono>
 #include <thread>
 
@@ -117,10 +119,16 @@ bool solve(int n, vector<pair<int, int>> &solution)
 
 int main()
 {
+    string s;
     int n;
     while (true) {
         cout << "Enter the size of the board (n for n-queens, up to 8): ";
-        cin >> n;
+        cin >> s;
+        if(!isdigit(s[0])){
+            cout << "Invalid input. Try again." << endl;
+            continue; // Invalid input
+        }
+        n = stoi(s);
         if (n < 1 || n > 8) {
             cout << "Invalid input. Try again." << endl;
             continue; // Invalid input
