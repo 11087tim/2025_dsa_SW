@@ -77,15 +77,9 @@ bool solve(int n, vector<pair<int, int>> &solution)
 
     // Check whether all queens are not seeing each other.
     if (solution.size() > n) {
+        cout << "Too many input pairs." << endl;
+        this_thread::sleep_for(chrono::milliseconds(5000));
         return false; // Invalid solution
-    }
-    for (int i = 0; i < solution.size(); ++i) {
-        for (int j = i + 1; j < solution.size(); ++j) {
-            if (solution[i].first == solution[j].first || solution[i].second == solution[j].second ||
-                abs(solution[i].first - solution[j].first) == abs(solution[i].second - solution[j].second)) {
-                return false; // Conflict between queens
-            }
-        }
     }
 
     // Find the solution
@@ -93,6 +87,20 @@ bool solve(int n, vector<pair<int, int>> &solution)
     for (int i = 0; i < solution.size(); ++i) {
         current[solution[i].first] = solution[i].second; // Place the queen
     }
+
+    print_grid(n, current);
+
+    for (int i = 0; i < solution.size(); ++i) {
+        for (int j = i + 1; j < solution.size(); ++j) {
+            if (solution[i].first == solution[j].first || solution[i].second == solution[j].second ||
+                abs(solution[i].first - solution[j].first) == abs(solution[i].second - solution[j].second)) {
+                cout << "Conflict between queens." << endl;
+                this_thread::sleep_for(chrono::milliseconds(5000));
+                return false; // Conflict between queens
+            }
+        }
+    }
+
     vector<bool> row_mask(n, true); // Track available rows
     for (int i = 0; i < n; ++i) {
         if (current[i] != -1) {
