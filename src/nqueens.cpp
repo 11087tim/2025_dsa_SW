@@ -75,6 +75,8 @@ bool solve(int n, vector<pair<int, int>> &solution)
     // Assumed zero-based indexing for rows and columns.
     // Support for n-queens problem with n in [1, 8] and with some queens already placed.
 
+    system("clear");
+
     // Check whether all queens are not seeing each other.
     if (solution.size() > n) {
         cout << "Too many input pairs." << endl;
@@ -85,10 +87,13 @@ bool solve(int n, vector<pair<int, int>> &solution)
     // Find the solution
     vector<int> current(n, -1); // Initialize the current row with -1 (no queen placed)
     for (int i = 0; i < solution.size(); ++i) {
+        if(current[solution[i].first] != -1) {
+            cout << "Conflict between queens." << endl;
+            this_thread::sleep_for(chrono::milliseconds(5000));
+            return false; // Conflict between queens
+        }
         current[solution[i].first] = solution[i].second; // Place the queen
     }
-
-    print_grid(n, current);
 
     for (int i = 0; i < solution.size(); ++i) {
         for (int j = i + 1; j < solution.size(); ++j) {
@@ -113,6 +118,7 @@ bool solve(int n, vector<pair<int, int>> &solution)
             rows.push_back(i); // Add available rows
         }
     }
+    print_grid(n, current); // Print the grid after placing the queens
     if (solve_nqueens(n, 0, rows, current)) { // Try to solve the n-queens problem
         for (int i = 0; i < n; ++i) {
             if (current[i] != -1) {
