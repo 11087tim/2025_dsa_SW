@@ -84,17 +84,6 @@ bool solve(int n, vector<pair<int, int>> &solution)
         return false; // Invalid solution
     }
 
-    // Find the solution
-    vector<int> current(n, -1); // Initialize the current row with -1 (no queen placed)
-    for (int i = 0; i < solution.size(); ++i) {
-        if(current[solution[i].first] != -1) {
-            cout << "Conflict between queens." << endl;
-            this_thread::sleep_for(chrono::milliseconds(5000));
-            return false; // Conflict between queens
-        }
-        current[solution[i].first] = solution[i].second; // Place the queen
-    }
-
     for (int i = 0; i < solution.size(); ++i) {
         for (int j = i + 1; j < solution.size(); ++j) {
             if (solution[i].first == solution[j].first || solution[i].second == solution[j].second ||
@@ -106,6 +95,11 @@ bool solve(int n, vector<pair<int, int>> &solution)
         }
     }
 
+    // Find the solution
+    vector<int> current(n, -1); // Initialize the current row with -1 (no queen placed)
+    for (int i = 0; i < solution.size(); ++i) {
+        current[solution[i].first] = solution[i].second; // Place the queen
+    }
     vector<bool> row_mask(n, true); // Track available rows
     for (int i = 0; i < n; ++i) {
         if (current[i] != -1) {
